@@ -1,0 +1,376 @@
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,400italic);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css);
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+
+    background-color: rgb(28, 44, 66);
+  font-family: "Open Sans", arial, sans-serif;
+  color: darkslategray;
+}
+  /* Nav and header css begin */
+
+
+
+/* header */
+header[role="banner"] {
+  background: white;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+  background-color: rgb(11, 17, 27);
+}
+header[role="banner"] h1 {
+  margin: 0;
+  font-weight: 300;
+  padding: 1rem;
+}
+header[role="banner"] h1:before {
+  content: "\f248";
+  font-family: FontAwesome;
+  padding-right: 0.6em;
+  color: red;
+}
+header[role="banner"] .utilities {
+  width: 100%;
+  background: slategray;
+  color: #ddd;
+}
+header[role="banner"] .utilities li {
+  border-bottom: solid 1px rgba(255, 255, 255, 0.2);
+}
+header[role="banner"] .utilities li a {
+  padding: 0.7em;
+  display: block;
+}
+.serach{
+position: absolute;
+margin-left: 450px;
+margin-top: -60px;
+width: 450px;
+height: 30px;
+border-radius: 5px;
+}
+/* header */
+.utilities a:before {
+  content: "\f248";
+  font-family: FontAwesome;
+  padding-right: 0.6em;
+}
+
+.logout a:before {
+  content: "";
+}
+
+.users a:before {
+  content: "";
+}
+
+nav[role="navigation"] {
+  background: #2a3542;
+  color: #ff1a1a;
+  background-color: rgb(11, 17, 27);
+  /* icons */
+}
+nav[role="navigation"] li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+nav[role="navigation"] li a {
+    color: #ff1a1a;
+  text-decoration: none;
+  display: block;
+  padding: 0.7em;
+}
+nav[role="navigation"] li a:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+
+
+/* current nav item */
+.current, .dashboard .dashboard a,
+.write .write a,
+.edit .edit a,
+.comments .comments a,
+.users .users a {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+footer[role="contentinfo"] {
+  background: slategray;
+  color: #ddd;
+  font-size: 0.8em;
+  text-align: center;
+  padding: 0.2em;
+}
+
+
+
+/* typography */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h2,
+h3,
+h4 {
+
+font-weight: 300;
+margin: 0;
+margin-bottom: 15px;
+}
+
+h2 {
+  color: #ff1a1a;
+}
+
+b {
+  color: lightsalmon;
+}
+
+.hint {
+  color: lightslategray;
+}
+
+/* lists */
+ul,
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.lang_ul{
+    list-style-type: none;
+    position: absolute;
+    margin-left: 295px;
+    margin-top: -65px;
+}
+
+
+.lang_ul li{
+    padding-bottom: 5px;
+}
+
+
+@media screen and (min-width: 600px) {
+  html,
+  body {
+    height: 100%;
+  }
+
+  header[role="banner"] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    height: 75px;
+  }
+  header[role="banner"] .utilities {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent;
+    color: darkslategray;
+    width: auto;
+  }
+  header[role="banner"] .utilities li {
+    display: inline-block;
+  }
+  header[role="banner"] .utilities li a {
+    padding: 0.5em 1em;
+  }
+
+  header a{
+    text-decoration: none;
+    color:#233533;
+  }
+
+  header ul li{
+    margin-bottom:-5px;
+  }
+
+  nav[role="navigation"] {
+    position: fixed;
+    width: 200px;
+    top: 75px;
+    bottom: 0px;
+    left: 0px;
+  }
+  nav ul{
+    margin-left: -29px;
+  }
+  nav .main li i{
+    margin-right: 5px ;
+  }
+
+  /* Nav and header css end */
+/* main_interface */
+
+.box{
+
+  margin-left: -80px;
+width: 203px;
+}
+
+.games{
+    width: 90%;
+    margin-left: 6%;
+    margin-top: 100px;
+}
+.games-carousel {
+    max-width: 100%;
+    display: grid;
+    height: auto;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-gap: 0;
+    margin-top: -20px;
+  }
+
+  .games-carousel .game .game-cover {
+    transition: transform 0.1s ease;
+    width: 200px;
+    height: 240px;
+  }
+
+  .games-carousel .game .game-cover:hover {
+    transform: translate(5px, -5px);
+    cursor: pointer;
+  }
+
+  .games-carousel .game .game-cover img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .games-carousel .game .game-cover:hover img {
+    box-shadow: -5px 5px #a970ff;
+  }
+/*full Game page Edits*/
+  .gameimg{
+  width: 500px;
+  height: 500px;
+  margin-left: 20%;
+}
+.fullgame .game-info {
+  margin-left: 200px;
+  white-space:break-spaces;
+  font-size: 40px;
+  color: rgb(163, 163, 163);
+}
+
+
+
+ .game-title {
+    font-size: 16px;
+    margin-bottom: 5px;
+    margin-left:60px;
+    color: rgb(163, 163, 163);
+  }
+  .game-info .game-viewership {
+    font-size: 16px;
+    margin-bottom: 5px;
+    margin-left:78px;
+
+    color: rgb(163, 163, 163);
+  }
+
+  .game-categories span {
+    background-image: linear-gradient(45deg, #6441a4, #a970ff);
+    padding: 2px 0.8rem;
+    color: white;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left:62px;
+
+  }
+
+  .login-box .user-box .label {
+    position: absolute;
+    top:-10px;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color:darkslategray;;
+    pointer-events: none;
+    transition: .5s;
+    font-style: italic;
+
+  }
+
+
+  main[role="main"] {
+    margin: 75px 0 40px 225px;
+    background: linear-gradient(#141e30, #243b55);
+color: red;
+text-align: center;
+width: 700px;
+  }
+  main[role="main"]:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .panel {
+    margin: 2% 0 0 2%;
+    float: left;
+    width: 96%;
+  }
+  .panel:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .box, .onethird, .twothirds {
+    padding: 1rem;
+  }
+
+  .onethird {
+    width: 33.333%;
+    float: left;
+  }
+
+  .twothirds {
+    width: 66%;
+    margin-top: 15px;
+    float: left;
+    margin-left: 160px;
+  }
+  .twothirds input{
+    margin-top: 10px;
+  }
+/* .main{
+    width: 918px;
+margin-left: 323px;
+} */
+.commentandusername main[role="main"] {
+width: 700px;
+margin-left: 350px;
+}
+
+.commentandusername main[role="main"] .commentanduser{
+    width: 100%;
+    margin: 5px 580px 5px 0px;
+    background-color: #ddd;
+
+    }
+
+    .commentandusername main[role="main"] .commentanduser .comment{
+        margin-right: 450px;
+    }
+
+}
