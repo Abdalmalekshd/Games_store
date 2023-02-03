@@ -47,4 +47,8 @@ class User extends Authenticatable
     public function Suggestion(){
         return $this->hasMany('App\Models\Suggestion','User_id');
         }
+
+        public function Rating(){
+            return $this->hasMany('App\Models\Rating','User_id');
+            }
 }

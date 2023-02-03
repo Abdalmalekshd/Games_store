@@ -37,4 +37,9 @@ class Game extends Model
     public function Suggestion(){
         return $this->hasMany('App\Models\Suggestion','Game_id');
         }
+
+
+        public function Rating(){
+            return $this->hasMany('App\Models\Rating','Game_id');
+            }
 }

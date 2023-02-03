@@ -7,7 +7,9 @@ use App\Models\Game;
 use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Models\Suggestion;
+use App\Models\Rating;
 use App\Models\User;
+
 use Symfony\Component\HttpFoundation\File\File;
 
 class UserController extends Controller
@@ -20,10 +22,11 @@ public function fullgamedetails($Game_id){
         'game_name_'. LaravelLocalization::getCurrentLocale() . ' as Game_Name',
         'game_details_' . LaravelLocalization::getCurrentLocale() .' as Game_detail',
         'photo' ,
-        'rating',
         'game_category_'. LaravelLocalization::getCurrentLocale() . ' as Game_Cat',
         'link'
         )->Find($Game_id);
+
+        
 
         $comments=Suggestion::with('Game')->where('Game_id',$Game_id)->get();
 
@@ -33,7 +36,11 @@ return view('Interfaces/FullGame',compact('Game','comments','commentsnum'));
 }
 
 public function Comments(Request $req){
-
+// $game=Game::find($req->id);
+// $updateGame=$game->update([
+//     'rating'=>$req->rating,
+// ]);
+    
 $comment=Suggestion::create([
     'Comment' =>$req->comment,
     'Game_id' =>$req->id,

@@ -24,7 +24,7 @@ class HomeController extends Controller
             'game_details_' . LaravelLocalization::getCurrentLocale() . ' as Game_Details',
             'game_category_' . LaravelLocalization::getCurrentLocale() . ' as game_category',
             'photo',
-            'rating'
+            
         )->paginate(5);
         $gameser='';
         return view('interfaces/UserHome',compact('game','gameser'));
@@ -38,7 +38,7 @@ class HomeController extends Controller
             'game_details_' . LaravelLocalization::getCurrentLocale() . ' as Game_Details',
             'game_category_' . LaravelLocalization::getCurrentLocale() . ' as game_category',
             'photo',
-            'rating'
+            
         )->paginate(5);
         // return $this->serachfor($req->serach);
             $gameser = Game::select('id',

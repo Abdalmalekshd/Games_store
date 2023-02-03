@@ -28,7 +28,7 @@
 
                 @endif  ">{{ $Game->Game_detail }}</div>
         <label class="game-viewership" style="font-size: 40px;margin-top: -110px;">Game Rating:</label>
-        <input type="text" style="height:60px;margin-left:-100px;text-align:center;margin-top: -95px;" value="{{ $Game->rating }}" readonly>
+        <input type="text" style="height:60px;margin-left:-100px;text-align:center;margin-top: -95px;" value="" readonly>
         <label for="" style="margin-top: -75px;">Game Category:</label>
         <input type="text" value="@if ($Game->Game_Cat == 1)
         {{ __('messages.horror') }}
@@ -53,24 +53,18 @@
     download="{{ $file->file }}" class="btn btn-primary">Download</i></a></td> --}}
 
 <form action="{{ route('Comments') }}" method="post" >
-<label for=""  style='margin-left:480px;color:rgb(163, 163, 163);Font-size:20px'>{{ __('messages.Rate') }}</label>
-
+<p>
+    <label for=""  style='margin-left:480px;color:rgb(163, 163, 163);Font-size:20px'>{{ __('messages.Rate') }}</label>
+</p>
 <input type="hidden" name="id" value="{{ $Game->id }}">
-
-<select  class='form-select form-select-sm' style='margin-left:480px;width:210px;' name="rating" id="">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        </select>
-
+<div class="rating">
+  
+    <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+    <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+    <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+    <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+    <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+  </div>
 
 <main role="main">
 
