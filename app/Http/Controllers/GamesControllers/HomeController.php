@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;;
 
 class HomeController extends Controller
 {
-    use SerachTrait;
+   
     use GetGameTrait;
     //Get All Games And Show It In The Home Page
     public function home()
@@ -43,7 +43,6 @@ class HomeController extends Controller
             
         )->paginate(5);
         $gameser=" ";
-        // return $this->serachfor($req->serach);
         if(! empty($gameser)){
         $gameser = Game::select('id',
             'game_name_' . LaravelLocalization::getCurrentLocale() . ' as Game_Name',
