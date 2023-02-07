@@ -517,10 +517,13 @@ margin-top: 100px;
   }
 
   .games-carousel .game .game-info .game-title ,.game-viewership {
-    font-size: 16px;
-    margin-left:60px;
-    margin-bottom: 5px;
-    color: rgb(163, 163, 163);
+    
+      font-size: 16px;
+  margin-left: 32px;
+  margin-bottom: 5px;
+  color: rgb(163, 163, 163);
+  max-width: 150px;
+  max-height: 30px;
   }
 
   .games-carousel .game .game-info .game-viewership{
@@ -530,6 +533,8 @@ margin-top: 100px;
   .games-carousel .game .game-info .game-title{
     margin-top: 30px;
     font-size: 20px;
+    overflow: scroll;
+    
   }
 
 
@@ -622,7 +627,10 @@ margin-left: 50px;
 color: white;
 
 }
-
+.stat a{
+  text-decoration: none;
+  color: white;
+}
 .users span{
   margin-top: 30px;
   position: absolute;

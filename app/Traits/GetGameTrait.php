@@ -16,7 +16,7 @@ trait GetGameTrait
             'game_details_' . LaravelLocalization::getCurrentLocale() . ' as Game_Details',
             'game_category_' . LaravelLocalization::getCurrentLocale() . ' as game_category',
             'photo',
-            'rating'
+            
         )->Where('game_category_en','=',$catnum)->get();
 
         return $game;

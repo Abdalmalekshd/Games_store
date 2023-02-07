@@ -75,7 +75,7 @@ class AdminController extends Controller
             'game_details_' . LaravelLocalization::getCurrentLocale() . ' as Game_Details',
             'game_category_' . LaravelLocalization::getCurrentLocale() . ' as game_category',
             'photo',
-            'rating'
+            
         )->get();
         // if(notNullValue($Games)){
         return view('interfaces/AllGames', compact('Games'));

@@ -53,8 +53,10 @@
     download="{{ $file->file }}" class="btn btn-primary">Download</i></a></td> --}}
 
 <form action="{{ route('Comments') }}" method="post" >
+    @csrf
+
 <p>
-    <label for=""  style='margin-left:480px;color:rgb(163, 163, 163);Font-size:20px'>{{ __('messages.Rate') }}</label>
+    <label for=""  style='margin-left:480px;color:#CC1313;Font-size:30px'>{{ __('messages.Rate') }}</label>
 </p>
 <input type="hidden" name="id" value="{{ $Game->id }}">
 <div class="rating">
@@ -66,11 +68,10 @@
     <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
   </div>
 
-<main role="main">
+<main role="main" style="margin-left:180px">
 
-    <section class="panel important">
+    <section class="panel important" >
         <h2>{{ __('messages.comment') }} </h2>
-            @csrf
             <div class="twothirds">
                 Number Of Comments:{{ $commentsnum }}<br />
 
@@ -81,7 +82,9 @@
                 @else
                 style="direction: ltr;"
 
-                @endif/><br />
+                @endif/>
+                <hr style="margin-bottom:-20px">
+                <br />
                 @error('comment')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -108,27 +111,7 @@
 </main>
 
 </form>
-{{--
-<div class="commentandusername">
 
-<main role="main" >
-    <section class="panel important">
-        <h2>{{ __('messages.Gamecomments') }}</h2>
-        <div class="commentanduser">
-
-        {{-- @if (isset($comments) && $comments->count() > 0)
-        @foreach ($comments as $comment)
-        <label class="comment">{{ $comment ->User->user_name}} </label><br>
-        <label class="comment">{{ $comment -> Comment}} </label><hr>
-        @endforeach
-        @endif
-    </div>
-
-
-    </section>
-
-</main>
-</div> --}}
 
 
 @endsection

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Game;
 use App\Traits\GetGameTrait;
 use App\Traits\SerachTrait;
+use Faker\Core\Number;
+use Hamcrest\Type\IsNumeric;
 use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -40,12 +42,23 @@ class HomeController extends Controller
             'photo',
             
         )->paginate(5);
+        $gameser=" ";
         // return $this->serachfor($req->serach);
-            $gameser = Game::select('id',
+        if(! empty($gameser)){
+        $gameser = Game::select('id',
             'game_name_' . LaravelLocalization::getCurrentLocale() . ' as Game_Name',
             'game_category_' . LaravelLocalization::getCurrentLocale() . ' as game_category',
             'photo')->where(DB::raw('concat(game_name_ar," ",game_name_en)') , 'LIKE' , '%' . $req->serach . '%')->get();
-
+        }else{
+            $gameser = Game::select(
+                'id',
+                'game_name_' . LaravelLocalization::getCurrentLocale() . ' as Game_Name',
+                'game_details_' . LaravelLocalization::getCurrentLocale() . ' as Game_Details',
+                'game_category_' . LaravelLocalization::getCurrentLocale() . ' as game_category',
+                'photo',
+                
+            )->paginate(5);
+        }
         return view('interfaces/UserHome',compact('game','gameser'));
         }
 

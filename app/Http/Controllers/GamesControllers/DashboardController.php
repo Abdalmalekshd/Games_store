@@ -32,5 +32,12 @@ class DashboardController extends Controller
 
         $dltsugg=Suggestion::Find($Game_id)->delete();
 
+        //I Should Use Ajax To Disable The Massege
     }
+    public function DltUser($User_id){
+
+        $dltsugg=User::Find($User_id)->delete();
+        //I Should Use Ajax To Disable The Massege
+    }
+
 }

@@ -3,10 +3,10 @@
 
 
         <ul class="lang_ul">
-              @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
             <li>
 
-                 <a rel="alternate" hreflang="{{ $localeCode }}"
+                    <a rel="alternate" hreflang="{{ $localeCode }}"
                     href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                     {{ $properties['native'] }}
                 </a>
@@ -19,7 +19,14 @@
     <?php
     if (!isset($NoSerachText)) {
         ?>
-        <input type="serach" class="serach" placeholder="{{ __('messages.Serach') }}" name='serach'>;
+        <input type="serach" class="serach" placeholder="{{ __('messages.Serach') }}" name='serach'
+        @if (LaravelLocalization::getCurrentLocale() == 'ar')
+style="direction: rtl;"
+
+@else
+style="direction: ltr;"
+
+@endif >
         <?php
     }?>
 </form>

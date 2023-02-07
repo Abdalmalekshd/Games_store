@@ -26,7 +26,14 @@ public function fullgamedetails($Game_id){
         'link'
         )->Find($Game_id);
 
-        
+            // $ratings=Rating::where('Game_id',$Game_id)->where('rating',5)->sum('rating');
+            // $numofusers=Rating::where('Game_id',$Game_id)->where('rating',5)->count();
+
+            // $rating3=Rating::where('Game_id',$Game_id)->where('rating',3)->sum('rating');
+            // $numofuser3=Rating::where('Game_id',$Game_id)->where('rating',3)->count();
+            // return $ratings/$numofusers;
+            // return $rating3/$numofuser3;
+
 
         $comments=Suggestion::with('Game')->where('Game_id',$Game_id)->get();
 
@@ -37,9 +44,11 @@ return view('Interfaces/FullGame',compact('Game','comments','commentsnum'));
 
 public function Comments(Request $req){
 // $game=Game::find($req->id);
-// $updateGame=$game->update([
-//     'rating'=>$req->rating,
-// ]);
+$RateGame=Rating::create([
+    'rating'=>$req->rating,
+    'Game_id'=>$req->id,
+'User_id' =>session('user_id')
+]);
     
 $comment=Suggestion::create([
     'Comment' =>$req->comment,

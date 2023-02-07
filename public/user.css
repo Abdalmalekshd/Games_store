@@ -277,12 +277,13 @@ width: 203px;
     margin-bottom: 5px;
     margin-left:60px;
     color: rgb(163, 163, 163);
+    max-width: 120px;
+
   }
   .game-info .game-viewership {
     font-size: 16px;
     margin-bottom: 5px;
     margin-left:78px;
-
     color: rgb(163, 163, 163);
   }
 

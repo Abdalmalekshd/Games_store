@@ -53,6 +53,7 @@ Route::group(['prefix' =>  LaravelLocalization::setLocale(), 'middleware' => ['l
 
         Route::get('DltSuggestion/{Game_id}', 'DashboardController@Dlt')->name('DltSuggestions');
 
+        Route::get('Dltuser/{User_id}', 'DashboardController@DltUser')->name('DltUser');
 
 
         Route::get('Edit_Game/{Game_id}','AdminController@Edit')->name('EditGame');

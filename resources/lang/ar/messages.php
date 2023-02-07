@@ -19,7 +19,7 @@ return [
     "Games_str" => 'متجر الالعاب',
     "sign out" => 'تسجيل خروج',
     "my acc" => 'حسابي',
-    "Serach" =>'.... ابحث عن لعبة',
+    "Serach" =>' ابحث عن لعبة....',
     //End Translate Header Section
 
    //Begin Translate Navbar Section
