@@ -22,7 +22,7 @@ style="direction: ltr;"
     <link rel="stylesheet" href="{{ asset('css/all.css') }}">
     <link rel="stylesheet" href="{{ asset('css1/bootstrap.min.css.map') }}">
     <script src="https://kit.fontawesome.com/f304de03af.js" crossorigin="anonymous"></script>
-
+  
     <?php
     if (!isset($ChangeCssFile)) {
         ?>
@@ -39,8 +39,8 @@ style="direction: ltr;"
     <title>@yield('Title', 'Games_store')</title>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
+    
 
 
 

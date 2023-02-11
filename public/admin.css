@@ -261,7 +261,7 @@ form legend {
   display: block;
   margin: 1em 0 0.5em;
 }
-form input[type="submit"] {
+form button{
   background: #ff1a1a;
   border: none;
   border-bottom: solid 4px #e60000;
@@ -710,10 +710,8 @@ color: #ff1a1a;
 height: 100px;
 width: 453px;
 overflow: scroll;
-
-
-
 }
+
 .BodyForGames .delcomment{
   margin-left: 180px;
 margin-top: -45px;

@@ -43,8 +43,10 @@ $NoSerachText = '';
         </div>
         <div class="panel-body forusers">
             @foreach ($user as $user)
-        {{ $user->name }}
+        {{ $user->name }}&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
         <a href="{{ route('DltUser', $user->id) }}"class="btn btn-danger delcomment"><i class='fa fa-close'></i>Delete</a>
+        <a href="#"class="btn btn-primary blockUser"><i class='fa fa-ban'></i>Block</a>
+        
         <hr>    
         @endforeach
         </div>
@@ -58,8 +60,12 @@ $NoSerachText = '';
         </div>
         <div class="panel-body BodyForGames">
             @foreach ($game as $game)
-            {{ $game->Game_Name }}<hr>
-
+            {{ $game->Game_Name }}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                
+<a href="{{ route('EditGame',$game->id) }}" class="btn btn-success">{{ __('messages.Update') }}</a> 
+    &nbsp; &nbsp; 
+    <a href="{{ route('DeleteGame',$game->id) }}" class="btn btn-Danger">{{ __('messages.Dlt') }}</a>
+            <hr>
             @endforeach
         </div>
     </div>

@@ -53,14 +53,14 @@ return [
     "Game_files" => ":ملفات اللعبة",
     "Save"       => "حفظ",
     "Update"     => "تحديث",
-     "Dlt"       =>'حذف',
-     "comment"    =>"اضف تعليقك",
-     "addcomment" => 'هل لديك اي تعليق او اقتراح؟',
-     "Gamecomments"=> 'تعليقات المستخدمين على هذه اللعبة',
-     "Rate" =>':ضع تقييما للعبة',
+        "Dlt"       =>'حذف',
+        "comment"    =>"اضف تعليقك",
+        "addcomment" => 'هل لديك اي تعليق او اقتراح؟',
+        "Gamecomments"=> 'تعليقات المستخدمين على هذه اللعبة',
+        "Rate" =>':ضع تقييما للعبة',
 //End Translate Body Section
 
-//Begin Translate Error Msg
+//Begin Translate Msg
     "Game_Name_In_Ar_Err_Msg" => "اسم اللعبة بالعربية يجب ان لا يكون فارغ",
     "Game_Name_In_En_Err_Msg" => "اسم اللعبة بالانكليزية يجب ان لا يكون فارغ",
     "Game_Details_In_Ar_Err_Msg"  => "تفاصيل اللعبة بالعربية يجب ان لا تكون فارغة",
@@ -74,7 +74,9 @@ return [
     "user_name_unique"=>"هذا الاسم مستخدم بالفعل",
     "Pass_req"=>"كلمة المرور مطلوبة",
     "Pass_Min"=>"كلمة المرور قصيرة جدا",
-     //End Translate Error Msg
+    "Game Added"=>"تم اضافة اللعبة",
+    "Game Not Added"=>'Error',
+     //End Translate  Msg
 
     // "offer not exist" => "offer not exist",
     // "offer Deleted successfully" => "offer deleted successfully"

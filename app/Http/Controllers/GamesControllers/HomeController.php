@@ -5,9 +5,6 @@ namespace App\Http\Controllers\GamesControllers;
 use App\Http\Controllers\Controller;
 use App\Models\Game;
 use App\Traits\GetGameTrait;
-use App\Traits\SerachTrait;
-use Faker\Core\Number;
-use Hamcrest\Type\IsNumeric;
 use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 

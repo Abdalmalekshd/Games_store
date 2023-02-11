@@ -48,7 +48,8 @@ Route::group(['prefix' =>  LaravelLocalization::setLocale(), 'middleware' => ['l
         Route::post('CreateNewGame', 'AdminController@Addgame')->name('Create_game');
 
         Route::get('AllGames', 'AdminController@AllGames')->name('AllGames');
-
+        
+        Route::get('users', 'AdminController@Users')->name('Users');
         Route::get('Suggestions', 'AdminController@Suggestions')->name('Suggestions');
 
         Route::get('DltSuggestion/{Game_id}', 'DashboardController@Dlt')->name('DltSuggestions');
@@ -83,7 +84,7 @@ Route::group(['prefix' =>  LaravelLocalization::setLocale(), 'middleware' => ['l
 
         Route::get('fullgame/{Game_id}', 'UserController@fullgamedetails')->name('fullgame');
 
-        Route::Post('Comment', 'UserController@Comments')->name('Comments');
+        Route::post('Comment', 'UserController@Comments')->name('Comments');
 
         Route::get('serach', 'HomeController@serachfor')->name('serach');
 

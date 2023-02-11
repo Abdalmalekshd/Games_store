@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" href="{{ asset('admin.css') }}">
 
-@section('Title', 'Dashboard')
+@section('Title', 'Suggestions && Comments')
 
 <?php
 $NoSerachText = '';

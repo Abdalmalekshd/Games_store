@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" href="{{ asset('user.css') }}">
 
-@section('Title')
+<title>{{ $Game->Game_Name }}</title>
 <?php $NoSerachText = '';?>
 
 @section('content')
@@ -14,7 +14,8 @@
 <div><img src="{{ url('Images/' . $Game->photo)}}"
     alt="{{ $Game->Game_Name }}" class="gameimg"/></div>
     <div class="game-info">
-        <label class="game-title" style="font-size: 40px;">Game Name:</label><input type="text" style="height:60px;margin-left:-7px;text-align:center" value="{{ $Game->Game_Name }}" readonly>
+        <label class="game-title" style="font-size: 40px;">Game Name:</label>
+        <input type="text" style="height:60px;margin-left:-100px;text-align:center" value="{{ $Game->Game_Name }}" readonly>
         <span style="margin-left: 30px;">Game Story:</span><br>
         <div name="" readonly id=""
         style="margin-left: -13px;text-align: center;width:518px;
@@ -49,10 +50,10 @@
 </div>
 </div>
 </div>
-{{-- <td><a href="{{ url('admin/file/download', $file->name_file) }}"
-    download="{{ $file->file }}" class="btn btn-primary">Download</i></a></td> --}}
+{{-- <a href="{{ url('admin/file/download', $file->name_file) }}"
+    download="{{ $file->file }}" class="btn btn-primary">Download</i></a> --}}
 
-<form action="{{ route('Comments') }}" method="post" >
+<form id="form_data" action="" method="POST">
     @csrf
 
 <p>
@@ -60,13 +61,13 @@
 </p>
 <input type="hidden" name="id" value="{{ $Game->id }}">
 <div class="rating">
-  
+
     <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
     <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
     <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
     <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
     <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
-  </div>
+</div>
 
 <main role="main" style="margin-left:180px">
 
@@ -83,7 +84,15 @@
                 style="direction: ltr;"
 
                 @endif/>
+                {{-- <a id="Comment" class="btn btn-danger" >Comment</a> --}}
+                <button id="Comment" class="btn btn-danger"  value="Comment" >Comment</button>
+
+                <div class="alert alert-success" id="success_msg">
+                Thanks For your Comment and Review
+                </div>
+
                 <hr style="margin-bottom:-20px">
+
                 <br />
                 @error('comment')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -93,8 +102,8 @@
 
                 @if (isset($comments) && $comments->count() > 0)
         @foreach ($comments as $comment)
-        <label class="comment">{{ $comment ->User->user_name}} </label><br>
-        <label class="comment">{{ $comment -> Comment}} </label><hr>
+        <span class="comment">{{ $comment ->User->user_name}} <span class="com">{{ $comment -> Comment}}</span></span><br>
+        <label class="comment-date">{{ $comment -> created_at}} </label><hr>
         @endforeach
         @endif
 {{-- لازم حط اليوم اللي انحط فيه التعليق --}}
@@ -108,10 +117,44 @@
     </section>
 
 
+
 </main>
 
 </form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+    <script>
+            $(document).on('click','#Comment',function(e){
+                e.preventDefault();
 
+                
+                var formdata=new FormData($('#form_data')[0]);
+        
+            $.ajax({
+                type: 'post',
+                // enctype: 'multipart/form-data',
+                url: "{{ route('Comments') }}",
+                data: formdata,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (data) {
+
+                    if (data.status == true) {
+
+                        $('#success_msg').show();
+                    }
+                },
+                
+                error: function (reject) {
+                    var response = $.parseJSON(reject.responseText);
+                    $.each(response.errors, function (key, val) {
+                        $("#" + key + "_error").text(val[0]);
+                    });
+                }
+            });
+        });
+</script>
 
 @endsection

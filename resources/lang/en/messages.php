@@ -61,7 +61,7 @@ return [
     "Rate" =>'Rate This Game:',
     //End Translate Body Section
 
-    //Begin Translate Error Msg
+    //Begin Translate  Msg
     "Game_Name_In_Ar_Err_Msg" => "Game Name In Arabic Could Not Be Empty",
     "Game_Name_In_En_Err_Msg" => "Game Name In English Could Not Be Empty",
     "Game_Details_In_Ar_Err_Msg" => "Game Details In Arabic Could Not Be Empty",
@@ -75,7 +75,11 @@ return [
     "user_name_unique"=>"User_name Already Exist",
     "Pass_req"=>"Password Field Is required",
     "Pass_Min"=>"Password is to shirt",
-    //End Translate Error Msg
+    "Game Added"=>"Game Has Been Added",
+    "Game Not Added"=>'Error',
+
+
+    //End Translate  Msg
 
 
 

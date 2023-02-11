@@ -35,15 +35,15 @@ public function fullgamedetails($Game_id){
             // return $rating3/$numofuser3;
 
 
-        $comments=Suggestion::with('Game')->where('Game_id',$Game_id)->get();
+            $comments=Suggestion::with('Game')->where('Game_id',$Game_id)->get();
 
-        $commentsnum=Suggestion::with('Game')->where('Game_id',$Game_id)->count();
+            $commentsnum=Suggestion::with('Game')->where('Game_id',$Game_id)->count();
 
 return view('Interfaces/FullGame',compact('Game','comments','commentsnum'));
 }
 
 public function Comments(Request $req){
-// $game=Game::find($req->id);
+
 $RateGame=Rating::create([
     'rating'=>$req->rating,
     'Game_id'=>$req->id,
@@ -55,7 +55,15 @@ $comment=Suggestion::create([
     'Game_id' =>$req->id,
     'User_id' =>session('user_id')
 ]);
-//This Should by Displayed In Ajax
+if ($comment) {
+    // return Redirect()->back()->with('success', 'Game Has Been Added');
+    return response()->json(['status' =>'true',
+'Msg'=>__('messages.Game Added')]);
+} else {
+    return response()->json(['status' =>'false',
+'Msg'=>__('messages.Game Not Added')]);
+
+}
 }
 
 

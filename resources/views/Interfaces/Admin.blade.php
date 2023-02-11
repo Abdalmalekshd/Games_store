@@ -16,7 +16,7 @@ $NoSerachText = '';
 
         <section class="panel important">
             <h2>{{ __('messages.Add New Game') }}</h2>
-            <form action="{{ route('Create_game') }}" method="post" enctype="multipart/form-data">
+            <form id='createForm'  method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="twothirds">
 
@@ -80,7 +80,7 @@ $NoSerachText = '';
                 </div>
                 <div>
 
-                    <input type="submit" value="{{ __('messages.Save') }}" />
+                    <button id="createGame" >{{ __('messages.Save') }}</button>
 
                 </div>
 
@@ -89,13 +89,52 @@ $NoSerachText = '';
                 </div>
             </form>
         </section>
-        @if (Session::has('success'))
+        {{-- @if (Session::has('success'))
             <div class="alert alert-success">{{ Session::get('success') }}</div>
-        @endif
+        @endif --}}
+        
+        <div id="success_msg" class="alert alert-success" style="display: none;">
+            Game Has Been Added
+        </div>
 
         @if (Session::has('Error'))
             <div class="alert alert-danger">{{ Session::get('Error') }}</div>
         @endif
     </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    
+    <script>
+        $(document).on('click','#createGame',function(e){
+            e.preventDefault();
+
+            
+            var formdata=new FormData($('#createForm')[0]);
+    
+        $.ajax({
+            type: 'post',
+            enctype: 'multipart/form-data',
+            url: "{{ route('Create_game') }}",
+            data: formdata,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (data) {
+
+                if (data.status == true) {
+
+                    $('#success_msg').show();
+                }
+            },
+            
+            error: function (reject) {
+                var response = $.parseJSON(reject.responseText);
+                $.each(response.errors, function (key, val) {
+                    $("#" + key + "_error").text(val[0]);
+                });
+            }
+        });
+    });
+</script>
 
 @endsection

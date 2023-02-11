@@ -354,24 +354,33 @@ width: 700px;
   .twothirds input{
     margin-top: 10px;
   }
-/* .main{
-    width: 918px;
-margin-left: 323px;
-} */
-.commentandusername main[role="main"] {
-width: 700px;
-margin-left: 350px;
+.comment{
+margin-right: 400px;
+
+}
+.comment .com{
+  margin-left: 60px;
+  position: relative;
+  
+
 }
 
-.commentandusername main[role="main"] .commentanduser{
-    width: 100%;
-    margin: 5px 580px 5px 0px;
-    background-color: #ddd;
+.comment .com:before{
+  content: "";
+  width: 0;
+  height: 0;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent #e0e0e0 transparent transparent;
+  position: absolute;
+  left: -32px;
+  top: 5px;
+}
 
-    }
 
-    .commentandusername main[role="main"] .commentanduser .comment{
-        margin-right: 450px;
+    .comment-date{
+      margin-left: 300px;
+      font-size: 12px;
     }
 /* Rating */
     .rating {

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\GameRequest;
 use App\Models\Admin;
 use App\Models\Suggestion;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -57,9 +58,12 @@ class AdminController extends Controller
 
 
         if ($games) {
-            return Redirect()->back()->with('success', 'Game Has Been Added');
+            // return Redirect()->back()->with('success', 'Game Has Been Added');
+            return response()->json(['status' =>'true',
+        'Msg'=>__('messages.Game Added')]);
         } else {
-            return Redirect()->back()->with('Error', 'Some Thing Wrong');
+            return response()->json(['status' =>'false',
+        'Msg'=>__('messages.Game Not Added')]);
 
         }
     }
@@ -77,13 +81,10 @@ class AdminController extends Controller
             'photo',
             
         )->get();
-        // if(notNullValue($Games)){
+        
+    
         return view('interfaces/AllGames', compact('Games'));
-    // }
-    // else{
-    //     return 'There Is No Games Go And Add One';
-
-    // }
+    
     }
     //End Select All Game Function
 
@@ -103,7 +104,7 @@ public function Edit($Game_id){
 }
 
 public function Update(Request $req,$Game_id){
-      $game=Game::find($Game_id);
+    $game=Game::find($Game_id);
 
 $game->update([
     'game_name_ar'    => $req->game_name_ar,
@@ -172,11 +173,18 @@ if($game){
 
     public function Suggestions(){
 
-           $Sugg=DB::select("SELECT suggestions.*,games.game_name_en AS Name,users.user_name
-           As USERNAME FROM Suggestions INNER JOIN games ON games.id=suggestions.Game_id
-           INNER JOIN users ON users.id=suggestions.User_id  ORDER BY suggestions.created_at DESC Limit 10");
+        $Sugg=DB::select("SELECT suggestions.*,games.game_name_en AS Name,users.user_name
+        As USERNAME FROM Suggestions INNER JOIN games ON games.id=suggestions.Game_id
+        INNER JOIN users ON users.id=suggestions.User_id  ORDER BY suggestions.created_at DESC Limit 10");
 
  return view('Interfaces/Suggestions',compact('Sugg'));
+    }
+
+
+    public function Users(){
+
+        $users=User::get();
+ return view('Interfaces/Users',compact('users'));
     }
 
 }
