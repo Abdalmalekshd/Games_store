@@ -16,6 +16,7 @@ class CreateSuggestionsTable extends Migration
         Schema::create('suggestions', function (Blueprint $table) {
             $table->id();
             $table->string('Comment');
+            $table->double('rating')->default(0);
             $table->integer('Game_id')->unsigned();
             $table->integer('User_id')->unsigned();
             $table->timestamps();

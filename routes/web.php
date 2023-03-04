@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
 use PhpParser\Builder\Use_;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -15,32 +16,36 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Auth::routes();
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 
-
 Route::group(['prefix' =>  LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
     Route::group(['prefix' => 'games', 'namespace' => 'App\Http\Controllers\GamesControllers'], function () {
         ##### Begin Login And Signup Routes#####
+
         Route::get('login', 'LoginController@login')->name('login');
         Route::post('userlogin', 'LoginController@Signin')->name('signin');
 
         Route::get('signup', 'SignupController@Signup')->name('signup');
         Route::post('sign', 'SignupController@sign')->name('Createaccount');
 
+        
+
+        Route::get('Adminlogin', 'LoginController@Adminlogin')->name('Adminlogin');
+        Route::post('AdminSignin', 'LoginController@AdminSignin')->name('AdminSignin');
+
+
+        
         Route::get('Account', 'ManageAccountController@ManageAccount')->name('Acc');
         Route::post('UpdateAcc','ManageAccountController@UpdateAcc')->name('UpdateAcc');
-
-
-
         ##### End Login And Signup Routes#####
 
         #####Begin Admin Routes#####
-
+        route::group(['middleware' => ['admin_auth']],function(){
         Route::get('Dashboard', 'DashboardController@Dashboard')->name('Dashboard');
 
         Route::get('AddGame', 'AdminController@admin')->name('admin');
@@ -52,23 +57,25 @@ Route::group(['prefix' =>  LaravelLocalization::setLocale(), 'middleware' => ['l
         Route::get('users', 'AdminController@Users')->name('Users');
         Route::get('Suggestions', 'AdminController@Suggestions')->name('Suggestions');
 
-        Route::get('DltSuggestion/{Game_id}', 'DashboardController@Dlt')->name('DltSuggestions');
+        Route::post('DltSuggestion', 'DashboardController@Dlt')->name('DltSuggestions');
 
-        Route::get('Dltuser/{User_id}', 'DashboardController@DltUser')->name('DltUser');
+        Route::post('Dltuser', 'DashboardController@DltUser')->name('DltUser');
 
 
         Route::get('Edit_Game/{Game_id}','AdminController@Edit')->name('EditGame');
 
         Route::post('UpdateGame/{id}','AdminController@Update')->name('updategame');
 
+        Route::get('adminserach', 'HomeController@adminserach')->name('adminserach');
 
 
-        Route::get('DeleteGame/{id}','AdminController@Delete')->name('DeleteGame');
+        Route::post('DeleteGame','AdminController@Delete')->name('DeleteGame');
 
-
+        });
 #####End Admin Routes#####
 
 #####Begin User Routes#####
+route::group(['middleware' => ['auth:web']],function(){
         Route::get('home', 'HomeController@home')->name('home');
 
         Route::get('Horror', 'HomeController@HorrorCate')->name('HorrorCate');
@@ -79,6 +86,7 @@ Route::group(['prefix' =>  LaravelLocalization::setLocale(), 'middleware' => ['l
 
         Route::get('SurvivalCate', 'HomeController@SurvivalCate')->name('SurvivalCate');
 
+        Route::get('About', 'HomeController@About')->name('About');
 
 
 
@@ -93,7 +101,7 @@ Route::group(['prefix' =>  LaravelLocalization::setLocale(), 'middleware' => ['l
         Route::get('Download/{link}', 'UserController@Download')->name('Download');
 
         // Route::get('file/download/{fileName}',[DetectionController::class,'fileDownload'])->name('file_download');
-
+    });
 
 
 

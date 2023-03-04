@@ -23,6 +23,9 @@ class Admin extends Authenticatable
     ];
 
 
+    protected  $guard  = "admin";
+
+
     public function Game(){
         return $this->hasMany('App\Models\Game','admin_id','id');
     }

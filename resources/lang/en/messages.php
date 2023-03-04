@@ -25,6 +25,7 @@ return [
     "main page" => "Home",
     "Add Game"=>"Add New Game",
     "AllGames" => "All Games",
+    "Users"=>"users",
     "horror" => 'Horror',
     "Action" => 'Action',
     "Adventure" => 'Adventure',
@@ -32,6 +33,7 @@ return [
     "About" => 'About',
     "Suggestions" => 'Comments',
     "MySuggestions" => 'My Comments',
+    
 
     //End Translate Navbar Section
 
@@ -39,10 +41,13 @@ return [
     //Begin Translate Body Section
 
     "name" => 'Name',
-    "email" => 'Email',
+    "email" => 'Enter Your Email',
+    "Email" => 'Email',
     "pass" => 'Password',
     "user_name" => 'User_Name',
     "submit" => 'Submit',
+    "Control"=>'Control',
+    "Game"=>'Game Name',
     "Add New Game" => "Add New Game",
     "Game_name_en" => "Game_Name_In_English:",
     "Game_name_ar" => "Game_Name_In_Arabic:",
@@ -55,6 +60,7 @@ return [
     "Save" => "Save",
     "Update" => "Update",
     "Dlt"       =>'Delete',
+    "Blk" =>"Block",
     "comment"    =>'Add Your Comment',
     "addcomment" => 'Do You Have Any Comment Or Suggestions?',
     "Gamecomments"=> 'Comments About The Game',
@@ -67,7 +73,11 @@ return [
     "Game_Details_In_Ar_Err_Msg" => "Game Details In Arabic Could Not Be Empty",
     "Game_Details_In_En_Err_Msg" => "Game Details In English Could Not Be Empty",
     "Game_Photo_Err_Msg" => "Game Photo Could Not Be Empty",
+    "Game_Photo_type_Err"   =>"Uploaded File Must Be A Photo",
+    "Game_Photo_Max_Size"   =>"The Size Of The Photo Must Not Be Larger The 5 Mb",
     "Game_Link_Err_Msg" => "Game Files Could Not Be Empty",
+    "Game_Link_Type_Err"=>"Game Files Must Be .zip or .rar",
+
     "full_name_req"=>"Full_name Is required",
     "Email_Is_Req"=>"Email Field Is required",
     "Email_Is_unique"=>"Email Already Exist",
@@ -75,8 +85,13 @@ return [
     "user_name_unique"=>"User_name Already Exist",
     "Pass_req"=>"Password Field Is required",
     "Pass_Min"=>"Password is to shirt",
+    "Comment"=>"You Can\'t Leave The Field Empty",
     "Game Added"=>"Game Has Been Added",
-    "Game Not Added"=>'Error',
+    "Game Not Added"=>'There\'s a problem try again later',
+    "Game Deleted"=>'Game Has Been Deleted',
+    "User Deleted"=>'User Has Been Deleted',
+    "Comment Deleted"=>'Comment Has Been Deleted',
+    "Thanks Review"=>'Thanks For your Comment and Review',
 
 
     //End Translate  Msg

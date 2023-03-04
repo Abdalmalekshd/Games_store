@@ -16,7 +16,7 @@ $NoSerachText = '';
 
         <section class="panel important">
             <h2>{{ __('messages.Add New Game') }}</h2>
-            <form action="{{ route('updategame', $Game->id) }}" id="updateForm" method="post" enctype="multipart/form-data">
+            <form action="{{ route('updategame', $Game->id) }}"  method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="twothirds">
 
@@ -43,7 +43,7 @@ $NoSerachText = '';
                     @enderror
                     {{ __('messages.Game_Img') }}<br />
                     <input type="file" name="photo"><img style='width:150px; height: 200px;'
-                     src="{{ url('Images/', $Game->photo) }}" alt=""><br />
+                        src="{{ url('Images/', $Game->photo) }}" alt=""><br />
                     @error('photo')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -51,17 +51,17 @@ $NoSerachText = '';
 
                     <select class="custom-select m-1" name='game_category_en'>
                         <option value="1" @if ($Game->game_category_en == 1)
-                         selected
-                            @endif>Horror</option>
-                        <option value="2" @if ($Game->game_category_en == 2)
                             selected
-                               @endif>Action</option>
-                        <option value="3" @if ($Game->game_category_en == 3)
-                            selected
-                               @endif>Adventure</option>
+                                @endif>Horror</option>
+                            <option value="2" @if ($Game->game_category_en == 2)
+                                selected
+                                @endif>Action</option>
+                            <option value="3" @if ($Game->game_category_en == 3)
+                                selected
+                                @endif>Adventure</option>
                         <option value="4" @if ($Game->game_category_en == 4)
                             selected
-                               @endif>Survival</option>
+                            @endif>Survival</option>
                     </select>
                     {{-- <br />
                     <br /> --}}
@@ -73,7 +73,7 @@ $NoSerachText = '';
                         <option value="2">أكشن</option>
                         <option value="3">مغامرة</option>
                         <option value="4">نجاة</option>
-                       {{-- @endif --}}
+                    {{-- @endif --}}
                     </select>
 
                     <br />
@@ -87,7 +87,7 @@ $NoSerachText = '';
                 <div>
 
 
-                    <button id="updategame">{{ __('messages.Update') }}</button>
+                    <input type="submit" value="{{ __('messages.Update') }}" />
 
 
 
@@ -98,47 +98,7 @@ $NoSerachText = '';
                 </div>
             </form>
         </section>
-        @if (Session::has('success'))
-            <div class="alert alert-success">{{ Session::get('success') }}</div>
-        @endif
-
-        @if (Session::has('Error'))
-            <div class="alert alert-danger">{{ Session::get('Error') }}</div>
-        @endif
+        
     </main>
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    
-    <script>
-        $(document).on('click','#updategame',function(e){
-            e.preventDefault();
 
-            
-            var formdata=new FormData($('#updateForm')[0]);
-    
-        $.ajax({
-            type: 'post',
-            enctype: 'multipart/form-data',
-            url: " {{ route('updategame') }}",
-            data: formdata,
-            processData: false,
-            contentType: false,
-            cache: false,
-            success: function (data) {
-
-                if (data.status == true) {
-
-                    $('#success_msg').show();
-                }
-            },
-            
-            error: function (reject) {
-                var response = $.parseJSON(reject.responseText);
-                $.each(response.errors, function (key, val) {
-                    $("#" + key + "_error").text(val[0]);
-                });
-            }
-        });
-    });
-</script> --}}
 @endsection

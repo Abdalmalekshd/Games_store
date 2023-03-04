@@ -12,6 +12,7 @@ class Suggestion extends Model
     public $fillable = [
         'id',
         'Comment',
+        'rating',
         'Game_id',
         'User_id',
         'created_at'

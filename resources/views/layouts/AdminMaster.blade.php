@@ -14,9 +14,6 @@ style="direction: ltr;"
 
     <meta name="google" value="notranslate" />
 
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css') }}" rel="stylesheet">
-
     <link rel="stylesheet" href="{{ asset('css1/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css1/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/all.css') }}">

@@ -28,16 +28,27 @@ class DashboardController extends Controller
         return view('interfaces/dashboard',compact('user','countUsers','game','countGames','Sugg'));
     }
 
-    public function Dlt($Game_id){
+    public function Dlt(Request $req){
 
-        $dltsugg=Suggestion::Find($Game_id)->delete();
+        $dltsugg=Suggestion::Find($req->id)->delete();
 
-        //I Should Use Ajax To Disable The Massege
-    }
-    public function DltUser($User_id){
+        if ($dltsugg) {
+            return response()->json(['status' =>true,
+        'Msg'=>__('messages.Comment Deleted'),
+    'id'=>$req->id ]);
+            } 
+        }
+    public function DltUser(Request $req){
 
-        $dltsugg=User::Find($User_id)->delete();
-        //I Should Use Ajax To Disable The Massege
+        $dltuser=User::Find($req->id)->delete();
+        
+        if ($dltuser) {
+            return response()->json(['status' =>true,
+        'Msg'=>__('messages.User Deleted'),
+    'id'=>$req->id ]);
+        } else {
+            return 'Error';
+        }
     }
 
 }

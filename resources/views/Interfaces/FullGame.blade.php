@@ -14,24 +14,24 @@
 <div><img src="{{ url('Images/' . $Game->photo)}}"
     alt="{{ $Game->Game_Name }}" class="gameimg"/></div>
     <div class="game-info">
-        <label class="game-title" style="font-size: 40px;">Game Name:</label>
-        <input type="text" style="height:60px;margin-left:-100px;text-align:center" value="{{ $Game->Game_Name }}" readonly>
-        <span style="margin-left: 30px;">Game Story:</span><br>
-        <div name="" readonly id=""
-        style="margin-left: -13px;text-align: center;width:518px;
-        background-color: white;color: black;
-        margin-top: -95px;overflow-wrap: break-word;overflow-x: scroll;
+        <label class="game-name">Game_Name:</label>
+        <input type="text" class="gamenameinput" value="{{ $Game->Game_Name }}" readonly>
+        <label class="gamestory">Game_Story:</label><br>
+        <div name="" readonly id="" class="gamestorydiv"
+        style="
         @if (LaravelLocalization::getCurrentLocale() == 'ar')
                 style="direction: rtl;"
-
                 @else
                 style="direction: ltr;"
-
                 @endif  ">{{ $Game->Game_detail }}</div>
-        <label class="game-viewership" style="font-size: 40px;margin-top: -110px;">Game Rating:</label>
-        <input type="text" style="height:60px;margin-left:-100px;text-align:center;margin-top: -95px;" value="" readonly>
-        <label for="" style="margin-top: -75px;">Game Category:</label>
-        <input type="text" value="@if ($Game->Game_Cat == 1)
+        <label class="game-Rating" >Game_Rating:</label>
+        <input type="text" class="gameratinginput" value="@if($rating<=5)
+        {{ $rating }}
+        @else
+            5
+        @endif" readonly>
+        <label for="" class="gamecat">Game_Category:</label>
+        <input type="text" class="gamecatinput" value="@if ($Game->Game_Cat == 1)
         {{ __('messages.horror') }}
         @elseif($Game->Game_Cat== 2)
         {{ __('messages.Action') }}
@@ -39,10 +39,10 @@
     {{ __('messages.Adventure') }}
     @elseif($Game->Game_Cat== 4)
     {{ __('messages.Survival') }}
-    @endif" style="text-align: center; margin-left:-100px">
+    @endif" >
         <a href="{{ route('Download', $Game->id) }}"
-            download="{{ $Game->link }}"  class="btn btn-primary"
-        style="margin-left: 20px"><i class="fa fa-download"></i>Click To Start Download</a>
+            download="{{ $Game->link }}"  class="btn btn-primary down"
+        ><i class="fa fa-download"></i>Click To Start Download</a>
     </div>
     {{-- <a class="btn btn-success" href="{{URL('Game_Files/'.$Game->link)}}" target="_blank">
         <i class="fa fa-download"></i> Download File
@@ -53,11 +53,11 @@
 {{-- <a href="{{ url('admin/file/download', $file->name_file) }}"
     download="{{ $file->file }}" class="btn btn-primary">Download</i></a> --}}
 
-<form id="form_data" action="" method="POST">
+<form id="Addcommentform" action="" method="POST">
     @csrf
 
 <p>
-    <label for=""  style='margin-left:480px;color:#CC1313;Font-size:30px'>{{ __('messages.Rate') }}</label>
+    <label for=""  style='margin-left:400px;color:#CC1313;Font-size:30px'>{{ __('messages.Rate') }}</label>
 </p>
 <input type="hidden" name="id" value="{{ $Game->id }}">
 <div class="rating">
@@ -74,29 +74,29 @@
     <section class="panel important" >
         <h2>{{ __('messages.comment') }} </h2>
             <div class="twothirds">
-                Number Of Comments:{{ $commentsnum }}<br />
+                <div style="margin-right:70px">Number Of Comments: {{ $commentsnum }}</div><br />
 
-                <input type="text" name="comment"  size="30"  placeholder="{{ __('messages.addcomment') }}"
+                <textarea type="text" name="comment" style="margin-right:60px;margin-bottom:20px;" size="30"  placeholder="{{ __('messages.addcomment') }}"
                 @if (LaravelLocalization::getCurrentLocale() == 'ar')
                 style="direction: rtl;"
 
                 @else
                 style="direction: ltr;"
 
-                @endif/>
-                {{-- <a id="Comment" class="btn btn-danger" >Comment</a> --}}
-                <button id="Comment" class="btn btn-danger"  value="Comment" >Comment</button>
+                @endif/></textarea><br>
+                <button id="Comment" 
+                class="btn btn-danger" style="margin-right:60px;" value="Comment" >Comment</button>
+                <br>
+                <small id="comment_error" class='btn-danger' style="margin-right: 40px;"></small>
 
-                <div class="alert alert-success" id="success_msg">
-                Thanks For your Comment and Review
+                <div class="alert alert-success" id="success_msg" style="display:none">
+                {{ __('messages.Thanks Review') }}
                 </div>
-
+                
                 <hr style="margin-bottom:-20px">
 
                 <br />
-                @error('comment')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                
 
 <br />
 
@@ -106,7 +106,7 @@
         <label class="comment-date">{{ $comment -> created_at}} </label><hr>
         @endforeach
         @endif
-{{-- لازم حط اليوم اللي انحط فيه التعليق --}}
+
             </div>
 
 
@@ -128,12 +128,12 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
             $(document).on('click','#Comment',function(e){
                 e.preventDefault();
 
-                
-                var formdata=new FormData($('#form_data')[0]);
+                $('#comment_error').text('');
+
+                var formdata=new FormData($('#Addcommentform')[0]);
         
             $.ajax({
                 type: 'post',
-                // enctype: 'multipart/form-data',
                 url: "{{ route('Comments') }}",
                 data: formdata,
                 processData: false,
@@ -144,6 +144,8 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
                     if (data.status == true) {
 
                         $('#success_msg').show();
+                    document.getElementById('Addcommentform').reset();
+
                     }
                 },
                 

@@ -39,7 +39,5 @@ class Game extends Model
         }
 
 
-        public function Rating(){
-            return $this->hasMany('App\Models\Rating','Game_id');
-            }
+       
 }

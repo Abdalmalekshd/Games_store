@@ -32,12 +32,11 @@ header[role="banner"] h1 {
   font-weight: 300;
   padding: 1rem;
 }
-header[role="banner"] h1:before {
-  content: "\f248";
-  font-family: FontAwesome;
+ header[role="banner"] .fa {
+ 
   padding-right: 0.6em;
   color: red;
-}
+} 
 header[role="banner"] .utilities {
   width: 100%;
   background: slategray;
@@ -83,10 +82,15 @@ nav[role="navigation"] li {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 nav[role="navigation"] li a {
-    color: #ff1a1a;
+   
+  color:#a69538;
   text-decoration: none;
   display: block;
   padding: 0.7em;
+}
+
+nav[role="navigation"] li a .fa {
+  color: #ff1a1a;
 }
 nav[role="navigation"] li a:hover {
   background-color: rgba(255, 255, 255, 0.05);
@@ -109,6 +113,23 @@ footer[role="contentinfo"] {
   font-size: 0.8em;
   text-align: center;
   padding: 0.2em;
+}
+
+.about h1{
+  margin-top: 100px;
+  margin-left: 600px;
+  color:#a69538;
+
+}
+.about blockquote{
+  margin-top: 50px;
+  margin-left: 200px;
+  font-size: 30px;
+  color: red;
+}
+.about blockquote span{
+ 
+  color:#a69538;
 }
 
 
@@ -153,7 +174,7 @@ li {
 .lang_ul{
     list-style-type: none;
     position: absolute;
-    margin-left: 295px;
+    margin-left: 350px;
     margin-top: -65px;
 }
 
@@ -227,14 +248,15 @@ width: 203px;
 .games{
     width: 90%;
     margin-left: 6%;
-    margin-top: 100px;
+    margin-top: 80px;
+    
 }
 .games-carousel {
-    max-width: 100%;
-    display: grid;
-    height: auto;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    grid-gap: 0;
+  max-width: 100%;
+  display: grid;
+  height: auto;
+  grid-template-columns: 210px 210px 210px 210px 210px;
+    grid-gap: 15px 10px;
     margin-top: -20px;
   }
 
@@ -261,7 +283,8 @@ width: 203px;
   .gameimg{
   width: 500px;
   height: 500px;
-  margin-left: 20%;
+  margin-left: 300px;
+  margin-top: 50px;
 }
 .fullgame .game-info {
   margin-left: 200px;
@@ -273,18 +296,78 @@ width: 203px;
 
 
  .game-title {
-    font-size: 16px;
-    margin-bottom: 5px;
-    margin-left:60px;
-    color: rgb(163, 163, 163);
-    max-width: 120px;
+  font-size: 16px;
+  margin-bottom: 5px;
+  margin-left: 80px;
+  color: rgb(163, 163, 163);
+  max-width: 140px;
+  }
+  .fullgame input {
+    width: 500px;
+    height: 60px;
+    margin-left: 100px;
+    text-align: center; 
+  }
+  .game-name{
+    margin-bottom:5px;
+    margin-left: 250px;
+
+  font-size: 30px;
+  margin-top: -500px;
+  color: rgb(163, 163, 163);
+  max-width: 140px;
+  }
+  .gamenameinput {
+    
+    
+    margin-top: -950px;
+  }
+
+
+  .fullgame .gamestory{
+    margin-left: 250px;
+    margin-top: -1350px;
+  }
+  .gamestorydiv{
+    margin-left: 100px;text-align: center;width:500px;
+        background-color: white;color: black;
+        margin-top: -1800px;overflow-wrap: break-word;overflow-x: scroll;
+  }
+
+  .game-Rating{
+    font-size: 30px;
+margin-top: -550px;
+margin-left: 250px;
 
   }
+
+  .gameratinginput{ 
+text-align: center;
+margin-top: -1010px;
+  }
+.gamecat{
+  font-size: 30px;
+  margin-top: -1400px;
+  margin-left: 250px;
+}
+.gamecatinput{
+  margin-top: -1850px;
+}
+.fullgame .down{
+  margin-left: 250px;
+  margin-top: -2200px;
+  width: 200px;
+}
+  
   .game-info .game-viewership {
     font-size: 16px;
     margin-bottom: 5px;
-    margin-left:78px;
+    margin-left:10px;
     color: rgb(163, 163, 163);
+  }
+  .game-info .rating{
+    margin-left: 0;
+    margin-right:250px;
   }
 
   .game-categories span {
@@ -315,7 +398,8 @@ width: 203px;
   main[role="main"] {
     margin: 75px 0 40px 225px;
     background: linear-gradient(#141e30, #243b55);
-color: red;
+    color:#a69538;
+
 text-align: center;
 width: 700px;
   }
@@ -396,7 +480,7 @@ margin-right: 400px;
       position: relative;
       width: 1.1em;
       font-size: 5vw;
-      color: #CC1313;;
+      color: #CC1313;
       cursor: pointer;
       }
       
@@ -416,6 +500,11 @@ margin-right: 400px;
       }
       
       .rating:hover > input:checked ~ label:before{ opacity: 0.4; 
+      }
+
+      #Addcommentform{
+    margin-top: -2300px;
+    margin-left: 100px;
       }
 
 }

@@ -24,7 +24,8 @@ class HomeController extends Controller
             'game_category_' . LaravelLocalization::getCurrentLocale() . ' as game_category',
             'photo',
             
-        )->paginate(5);
+        )->paginate(10);
+
         $gameser='';
         return view('interfaces/UserHome',compact('game','gameser'));
     }
@@ -87,6 +88,12 @@ class HomeController extends Controller
             $game=$this->GetGame(4);
 
             return view('interfaces/UserGameCategoy',compact('game'));
+        }
+
+        public function About(){
+
+
+            return view('interfaces/About');
         }
 
 }

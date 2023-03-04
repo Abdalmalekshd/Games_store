@@ -19,20 +19,20 @@ $ChangeCssFile = '';
 
 
 
-                <input type="text" name="full_name"  value="{{ $user->name }}">
+                <input type="text" name="full_name"  value="{{ $user->name }}" placeholder="Name">
 
             </div>
 
             <div class="user-box">
-                <input type="email" name="email" value="{{ $user->email }}">
+                <input type="email" name="email" value="{{ $user->email }}" placeholder="Email">
 
             </div>
             <div class="user-box">
-                <input type="text" name="user_name" value="{{ $user->user_name }}" >
+                <input type="text" name="user_name" value="{{ $user->user_name }}"  placeholder="Username">
 
             </div>
             <div class="user-box">
-                <input type="password" name="password">
+                <input type="password" name="password" placeholder="password">
 
 
             </div>

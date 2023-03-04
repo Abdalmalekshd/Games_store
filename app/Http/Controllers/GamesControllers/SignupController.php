@@ -4,10 +4,15 @@ namespace App\Http\Controllers\GamesControllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Models\Game;
+use App\Models\Suggestion;
+
 use App\Http\Requests\SignupRequest;
+use Illuminate\Support\Facades\Hash;
+
 class SignupController extends Controller
 {
     public function signup()
@@ -23,7 +28,7 @@ class SignupController extends Controller
             'name' => $req->full_name,
             'email' => $req->email,
             'user_name' => $req->user_name,
-            'password' => sha1($req->password),
+            'password' =>  Hash::make($req->password),
         ]);
         $email = User::select('email')->first()->email;
         if ($email == $req->email) {
@@ -40,4 +45,10 @@ class SignupController extends Controller
             return view('interfaces/UserHome',compact('game'));
         }
     }
+
+
+
+
+   
+    
 }

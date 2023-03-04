@@ -8,9 +8,11 @@ use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Models\Suggestion;
 use App\Models\Rating;
-use App\Models\User;
-
-use Symfony\Component\HttpFoundation\File\File;
+use App\Http\Requests\CommentRequest;
+use App\Mail\NewCommentAdded;
+use App\Models\Admin;
+use Illuminate\Support\Facades\Mail;
+use Laravel\Sanctum\NewAccessToken;
 
 class UserController extends Controller
 {
@@ -26,43 +28,42 @@ public function fullgamedetails($Game_id){
         'link'
         )->Find($Game_id);
 
-            // $ratings=Rating::where('Game_id',$Game_id)->where('rating',5)->sum('rating');
-            // $numofusers=Rating::where('Game_id',$Game_id)->where('rating',5)->count();
+        //Start Rating Calculating
+        
+        $rating=Suggestion::select('rating')->where('Game_id',$Game_id)->sum('rating')/5;
+            $numofusers=Suggestion::select('rating')->where('Game_id',$Game_id)->where('rating','>',0)->count();
+            
 
-            // $rating3=Rating::where('Game_id',$Game_id)->where('rating',3)->sum('rating');
-            // $numofuser3=Rating::where('Game_id',$Game_id)->where('rating',3)->count();
-            // return $ratings/$numofusers;
-            // return $rating3/$numofuser3;
-
-
+            
+            //End Rating Calculating
             $comments=Suggestion::with('Game')->where('Game_id',$Game_id)->get();
 
             $commentsnum=Suggestion::with('Game')->where('Game_id',$Game_id)->count();
 
-return view('Interfaces/FullGame',compact('Game','comments','commentsnum'));
+return view('Interfaces/FullGame',compact('Game','comments','commentsnum','rating','numofusers'));
 }
 
-public function Comments(Request $req){
-
-$RateGame=Rating::create([
-    'rating'=>$req->rating,
-    'Game_id'=>$req->id,
-'User_id' =>session('user_id')
-]);
+public function Comments(CommentRequest $req){
     
 $comment=Suggestion::create([
     'Comment' =>$req->comment,
+    'rating'=>$req->rating,
     'Game_id' =>$req->id,
-    'User_id' =>session('user_id')
+    'User_id' =>auth('web')->id(),
 ]);
+
+$admin=Admin::all();
+Mail::to($admin)->send(new NewCommentAdded);
+
 if ($comment) {
     // return Redirect()->back()->with('success', 'Game Has Been Added');
-    return response()->json(['status' =>'true',
-'Msg'=>__('messages.Game Added')]);
-} else {
-    return response()->json(['status' =>'false',
-'Msg'=>__('messages.Game Not Added')]);
+    return response()->json(['status' =>true,
+'Msg'=>__('messages.Thanks Review')]);
 
+
+
+} else {
+    return 'error';
 }
 }
 

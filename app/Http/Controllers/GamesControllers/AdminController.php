@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Traits\GameLinkTrait;
 use App\Traits\GamePhotoTrait;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\GameRequest;
+use App\Mail\NewGameAddedMail;
 use App\Models\Admin;
 use App\Models\Suggestion;
 use App\Models\User;
@@ -53,16 +54,20 @@ class AdminController extends Controller
             'game_category_en' => $req->game_category_en,
             'game_category_ar' => $req->game_category_ar,
             'link'           => $Game_Link,
-            // 'admin_id'        => ,
+            'admin_id'        =>Auth('admin')->id(),
         ]);
+        $user = User::select('email')->get();
+        
+        Mail::to($user)->send(new NewGameAddedMail());
 
-
+        
         if ($games) {
-            // return Redirect()->back()->with('success', 'Game Has Been Added');
-            return response()->json(['status' =>'true',
-        'Msg'=>__('messages.Game Added')]);
+            
+            return response()->json(["status" =>true,
+        'msg'=>__('messages.Game Added')],
+    );
         } else {
-            return response()->json(['status' =>'false',
+            return response()->json(['status' =>false,
         'Msg'=>__('messages.Game Not Added')]);
 
         }
@@ -81,9 +86,11 @@ class AdminController extends Controller
             'photo',
             
         )->get();
-        
-    
-        return view('interfaces/AllGames', compact('Games'));
+        // $Game_id=$Games->id;
+        // $rating=Rating::where('Game_id',$Games->id)->sum('rating')/5;
+        //     $numofusers=Rating::where('Game_id',$Games->id)->count();
+        $rating='';
+        return view('interfaces/AllGames', compact('Games','rating'));
     
     }
     //End Select All Game Function
@@ -93,12 +100,12 @@ public function Edit($Game_id){
 
         $Game=Game::select()->find($Game_id);
 
-
+        
 // if(isNull($Game)){
 //  return redirect()->route('AllGames');
 
 // }else{
-    return view('Interfaces/update',compact('Game'));
+    return view('Interfaces/update',compact('Game','rating'));
 
 //  }
 }
@@ -108,9 +115,9 @@ public function Update(Request $req,$Game_id){
 
 $game->update([
     'game_name_ar'    => $req->game_name_ar,
-'game_name_en'    => $req->game_name_en,
-'game_details_ar' => $req->details_ar,
-'game_details_en' => $req->details_en,
+    'game_name_en'    => $req->game_name_en,
+    'game_details_ar' => $req->details_ar,
+    'game_details_en' => $req->details_en,
 
 'game_category_en' => $req->game_category_en,
 'game_category_ar' => $req->game_category_ar,
@@ -145,38 +152,43 @@ if ($req->hasFile('link')) {
 $game->save();
 
 if($game){
-    return redirect()->back()->with('success','Game Has Been Updated');
+    return redirect()->route('AllGames');
 }else{
-    return redirect()->back()->with('Error','Game Has Not Been Updated');
+    return redirect()->route('EditGame');
 }
     }
     //End Update Function
 
     //Begin  Delete Game Function
-    public function Delete($Game_id){
+    public function Delete(Request $req){
 
-        $Game=Game::find($Game_id);
+        $Game=Game::find($req->id);
 //Delete photo from public File
         File::delete("Images/" . $Game->photo);
 
         File::delete("Game_Files/" . $Game->link);
             $delegame=$Game->Delete();
 
+        if ($delegame) {
+            return response()->json(["status" =>true,
+        'msg'=>__('messages.Game Deleted'),
+        'id'=>$req->id]);
+        } else {
+            return response()->json(['status' =>false,
+        'Msg'=>__('messages.Game Not Added')]);
 
-        return redirect()->back()->with('success','Game Has Been Deleted');
-
-
-    //     return redirect()->back()->with('Error','Game Does Not Exist');
-
+        }
 
     }
 
     public function Suggestions(){
 
-        $Sugg=DB::select("SELECT suggestions.*,games.game_name_en AS Name,users.user_name
-        As USERNAME FROM Suggestions INNER JOIN games ON games.id=suggestions.Game_id
-        INNER JOIN users ON users.id=suggestions.User_id  ORDER BY suggestions.created_at DESC Limit 10");
-
+        // $Sugg=DB::select("SELECT suggestions.*,games.game_name_en AS Name,users.user_name
+        // As USERNAME FROM Suggestions INNER JOIN games ON games.id=suggestions.Game_id
+        // INNER JOIN users ON users.id=suggestions.User_id  ORDER BY suggestions.created_at DESC Limit 10");
+        $Sugg=Suggestion::with('User')->with('Game')->WhereHas('Game',function($q){
+            $q->select(['game_name_' . LaravelLocalization::getCurrentLocale() . ' as Game_Name',]);
+        })->OrderBy('id','Desc')->get();
  return view('Interfaces/Suggestions',compact('Sugg'));
     }
 
@@ -187,4 +199,24 @@ if($game){
  return view('Interfaces/Users',compact('users'));
     }
 
+
+    public function adminserach(Request $req){
+    $gameser=" ";
+    if(! empty($gameser)){
+    $gameser = Game::select('id',
+        'game_name_' . LaravelLocalization::getCurrentLocale() . ' as Game_Name',
+        'game_category_' . LaravelLocalization::getCurrentLocale() . ' as game_category',
+        'photo')->where(DB::raw('concat(game_name_ar," ",game_name_en)') , 'LIKE' , '%' . $req->serach . '%')->get();
+    }else{
+        $gameser = Game::select(
+            'id',
+            'game_name_' . LaravelLocalization::getCurrentLocale() . ' as Game_Name',
+            'game_details_' . LaravelLocalization::getCurrentLocale() . ' as Game_Details',
+            'game_category_' . LaravelLocalization::getCurrentLocale() . ' as game_category',
+            'photo',
+            
+        )->paginate(5);
+    }
+    return view('Interfaces.AllGames',compact('gameser'));
+}
 }

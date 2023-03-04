@@ -28,7 +28,7 @@
                 </div>
                 <div class="game-info">
                     <p class="game-title">{{ $Game->Game_Name }}</p>
-                    <p class="game-viewership">Rating</p>
+                    <p class="game-viewership rating"></p>
                 </div>
 
                 <div class="game-categories">

@@ -6,6 +6,6 @@
         <li class="Adventure"><a href="{{ route('AdventureCate') }}">{{ __('messages.Adventure') }}</a></li>
         <li class="Survival"><a href="{{ route('SurvivalCate') }}">{{ __('messages.Survival') }}</a></li>
         {{-- <li class=""><a href=""><i class="fa fa-comment"></i>{{ __('messages.MySuggestions') }}</a></li> --}}
-        <li class="About"><a href="#"><i class="fa fa-"></i>{{ __('messages.About') }}</a></li>
+        <li class="About"><a href="{{ route('About') }}"><i class="fa fa-"></i>{{ __('messages.About') }}</a></li>
         </ul>
 </nav>

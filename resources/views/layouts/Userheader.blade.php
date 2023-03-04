@@ -1,5 +1,5 @@
 <header role="banner">
-    <h1>{{ __('messages.Games_str') }}</h1>
+    <h1><i class="fa fa-gamepad"></i>{{ __('messages.Games_str') }}</h1>
 
 
         <ul class="lang_ul">
