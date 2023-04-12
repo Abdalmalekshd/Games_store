@@ -40,18 +40,14 @@
     @elseif($Game->Game_Cat== 4)
     {{ __('messages.Survival') }}
     @endif" >
-        <a href="{{ route('Download', $Game->id) }}"
-            download="{{ $Game->link }}"  class="btn btn-primary down"
-        ><i class="fa fa-download"></i>Click To Start Download</a>
+
+    <a class="btn btn-primary down" href="{{URL('Game_Files/'.$Game->link)}}" target="_blank"><i class="fa fa-download"></i>Download The Game</a>
+        
     </div>
-    {{-- <a class="btn btn-success" href="{{URL('Game_Files/'.$Game->link)}}" target="_blank">
-        <i class="fa fa-download"></i> Download File
-    </a> --}}
+   
 </div>
 </div>
 </div>
-{{-- <a href="{{ url('admin/file/download', $file->name_file) }}"
-    download="{{ $file->file }}" class="btn btn-primary">Download</i></a> --}}
 
 <form id="Addcommentform" action="" method="POST">
     @csrf
