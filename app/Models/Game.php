@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-
+// use App\Models\visits;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Game extends Model
 {
+    
     use HasFactory;
 
     public $fillable = [
@@ -28,7 +30,6 @@ class Game extends Model
 
 
 
-
     public function Admin(){
         return $this->belongsTo('App\Models\Admin','admin_id','id');
     }
@@ -38,6 +39,5 @@ class Game extends Model
         return $this->hasMany('App\Models\Suggestion','Game_id');
         }
 
-
-       
+        
 }

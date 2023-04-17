@@ -24,18 +24,10 @@ $NoSerachText = '';
 
 </div>
 
-{{-- <div class="visiters_per_Day col-md-3">
-    <label for="">Visiters For That Today</label>
 
-    <span>200</span>
+
+
 </div>
-
-<div class="visiters_per_Year col-md-3">
-    <label for="">Visiters For This Year</label>
-
-    <span>10000</span>
-</div>
-</div> --}}
 <div class="row" >
 <div class="col-sm-6" style="margin-left: 300px;">
     <div class="panel panel-default">
