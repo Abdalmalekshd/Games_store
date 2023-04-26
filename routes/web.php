@@ -21,22 +21,28 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['namespace' => 'App\Http\Controllers\GamesControllers'],function(){
+    Route::get('login', 'LoginController@login')->name('login');
+    Route::post('userlogin', 'LoginController@Signin')->name('signin');
+
+    Route::get('signup', 'SignupController@Signup')->name('signup');
+    Route::post('sign', 'SignupController@sign')->name('Createaccount');
+
+    
+    Route::get('Adminlogin', 'LoginController@Adminlogin')->name('Adminlogin');
+    Route::post('AdminSignin', 'LoginController@AdminSignin')->name('AdminSignin');
+});
+
+
+        
+        
 
 
 Route::group(['prefix' =>  LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
     Route::group(['prefix' => 'games', 'namespace' => 'App\Http\Controllers\GamesControllers'], function () {
         ##### Begin Login And Signup Routes#####
 
-        Route::get('login', 'LoginController@login')->name('login');
-        Route::post('userlogin', 'LoginController@Signin')->name('signin');
-
-        Route::get('signup', 'SignupController@Signup')->name('signup');
-        Route::post('sign', 'SignupController@sign')->name('Createaccount');
-
         
-
-        Route::get('Adminlogin', 'LoginController@Adminlogin')->name('Adminlogin');
-        Route::post('AdminSignin', 'LoginController@AdminSignin')->name('AdminSignin');
 
 
         
