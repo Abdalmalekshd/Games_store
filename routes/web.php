@@ -21,12 +21,18 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::group(['namespace' => 'App\Http\Controllers\GamesControllers'],function(){
-    Route::get('login', 'LoginController@login')->name('login');
-    Route::post('userlogin', 'LoginController@Signin')->name('signin');
 
-    Route::get('signup', 'SignupController@Signup')->name('signup');
-    Route::post('sign', 'SignupController@sign')->name('Createaccount');
+Route::group(['namespace' => 'App\Http\Controllers\GamesControllers','middleware'=>'guest:web'],function(){
+Route::get('login', 'LoginController@login')->name('login');
+Route::post('userlogin', 'LoginController@Signin')->name('signin');
+
+Route::get('signup', 'SignupController@Signup')->name('signup');
+Route::post('sign', 'SignupController@sign')->name('Createaccount');
+});
+
+
+Route::group(['namespace' => 'App\Http\Controllers\GamesControllers','middleware'=>'guest:admin'],function(){
+   
 
     
     Route::get('Adminlogin', 'LoginController@Adminlogin')->name('Adminlogin');
