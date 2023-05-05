@@ -69,10 +69,14 @@ $NoSerachText = '';
 
                     <select class="custom-select m-1" name='game_category_ar'>
 
-                        <option value="1">رعب</option>
-                        <option value="2">أكشن</option>
-                        <option value="3">مغامرة</option>
-                        <option value="4">نجاة</option>
+                        <option value="1"  @if ($Game->game_category_ar == 1)  selected
+                            @endif>رعب</option>
+                        <option value="2" @if ($Game->game_category_ar == 2)  selected
+                            @endif>أكشن</option>
+                        <option value="3" @if ($Game->game_category_ar == 3)  selected
+                            @endif>مغامرة</option>
+                        <option value="4" @if ($Game->game_category_ar == 4)  selected
+                            @endif>نجاة</option>
                     {{-- @endif --}}
                     </select>
 

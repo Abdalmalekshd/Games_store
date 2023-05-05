@@ -101,13 +101,10 @@ public function Edit($Game_id){
         $Game=Game::select()->find($Game_id);
 
         
-// if(isNull($Game)){
-//  return redirect()->route('AllGames');
 
-// }else{
-    return view('Interfaces/update',compact('Game','rating'));
+    return view('Interfaces/update',compact('Game'));
 
-//  }
+
 }
 
 public function Update(Request $req,$Game_id){
